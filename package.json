@@ -1,0 +1,21 @@
+{
+  "name": "sharvari-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Sharvari Sunil Mayekar with HANA AI Chatbot",
+  "type": "module",
+  "scripts": {
+    "start:dev": "vercel dev --local --listen 3000",
+    "test": "node test_handler.js"
+  },
+  "keywords": [
+    "portfolio",
+    "ai-chatbot",
+    "vercel-serverless",
+    "claude"
+  ],
+  "author": "Sharvari Sunil Mayekar",
+  "license": "ISC",
+  "devDependencies": {
+    "vercel": "^59.11.2"
+  }
+}

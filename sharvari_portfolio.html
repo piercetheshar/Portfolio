@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharvari Sunil Mayekar · AI/ML Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --void: #0a0a14;
+      --deep: #0f0f1e;
+      --panel: #141428;
+      --card: #191933;
+      --plum: #3f3f7a;
+      --plum-dim: rgba(63, 63, 122, 0.18);
+      --rose: #5b6ee1;
+      --rose-dim: rgba(91, 110, 225, 0.14);
+      --petal: #9aa3f0;
+      --petal-dim: rgba(154, 163, 240, 0.10);
+      --ivory: #eef0f7;
+      --muted: rgba(238, 240, 247, 0.4);
+      --softer: rgba(238, 240, 247, 0.68);
+      --border: rgba(238, 240, 247, 0.10);
+      --border-plum: rgba(63, 63, 122, 0.4);
+      --gold: #6b6f99;
+      --gold-dim: rgba(107, 111, 153, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--ivory);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── PARTICLES CONSTELLATION NETWORK ── */
+    #tsparticles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── CURSOR GLOW ── */
+    #cursor-glow {
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192, 132, 160, 0.06) 0%, rgba(107, 63, 160, 0.03) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      transition: left 0.1s ease-out, top 0.1s ease-out;
+    }
+
+    /* ── GRID BG ── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(192, 132, 160, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 132, 160, 0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 16, 0.88);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--petal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--petal);
+    }
+
+    .nav-pill {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--rose);
+      padding: 0.45rem 1.2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-pill:hover {
+      background: var(--rose-dim);
+      color: var(--petal);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      z-index: 2;
+    }
+
+    .petals-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .petal-el {
+      position: absolute;
+      opacity: 0;
+      animation: petalfall linear infinite;
+    }
+
+    @keyframes petalfall {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px) rotate(0deg) scale(1);
+      }
+
+      10% {
+        opacity: 0.35;
+      }
+
+      85% {
+        opacity: 0.12;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(105vh) rotate(900deg) scale(0.6);
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-chapter {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .chapter-line {
+      width: 36px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 5.5rem;
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.5px;
+      color: var(--ivory);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1.0;
+      letter-spacing: -0.5px;
+      margin-bottom: 2rem;
+      color: #7682e5;
+      cursor: default;
+      display: block;
+    }
+
+    .hero-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--softer);
+      line-height: 1.85;
+      max-width: 560px;
+      margin: 0 auto 2.8rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--plum), var(--rose));
+      color: var(--ivory);
+      border: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: transparent;
+      color: var(--petal);
+      border: 1px solid var(--border);
+      padding: 0.85rem 2.2rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--rose-dim);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--rose), transparent);
+      animation: scrollpulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollpulse {
+
+      0%,
+      100% {
+        opacity: 0.25;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* ── STAT STRIP ── */
+    .stat-strip {
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 240px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      font-style: normal;
+      background: linear-gradient(135deg, var(--petal), var(--rose));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .sec-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 3px;
+      color: var(--rose);
+      white-space: nowrap;
+    }
+
+    .sec-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--ivory);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sec-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--softer);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .about-text strong {
+      color: var(--ivory);
+      font-weight: 600;
+    }
+
+    .about-text em {
+      color: var(--petal);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .char-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem 1.4rem;
+      position: relative;
+    }
+
+    .char-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rose), var(--plum), transparent);
+    }
+
+    .char-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--plum-dim), var(--rose-dim));
+      border: 1px solid var(--border);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+    }
+
+    .char-name {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+      text-align: center;
+      color: var(--petal);
+      margin-bottom: 3px;
+    }
+
+    .char-class {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .char-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0.9rem 0;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.72rem;
+    }
+
+    .sname {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+      width: 58px;
+      flex-shrink: 0;
+    }
+
+    .sbar-wrap {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .sbar {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .sbar-rose {
+      background: linear-gradient(90deg, var(--plum), var(--petal));
+    }
+
+    .sbar-gold {
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+    }
+
+    .sbar-petal {
+      background: linear-gradient(90deg, var(--petal), #fff);
+    }
+
+    .sval {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--softer);
+      width: 22px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .char-trait {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .trait-icon {
+      font-size: 0.85rem;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 135px 1fr;
+      gap: 1.5rem;
+    }
+
+    .tl-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-top: 0.2rem;
+    }
+
+    .tl-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-bottom: 0.5rem;
+      text-align: right;
+    }
+
+    .tl-dot-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    .tl-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--rose);
+      box-shadow: 0 0 8px rgba(192, 132, 160, 0.6);
+    }
+
+    .tl-dot.plum {
+      background: var(--plum);
+      box-shadow: 0 0 8px rgba(107, 63, 160, 0.6);
+    }
+
+    .tl-dot.gold {
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(201, 169, 110, 0.5);
+    }
+
+    .tl-connector {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .tl-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 1px solid var(--rose);
+      padding: 1.4rem 1.6rem;
+    }
+
+    .tl-card.plum-border {
+      border-left-color: var(--plum);
+    }
+
+    .tl-card.gold-border {
+      border-left-color: var(--gold);
+    }
+
+    .tl-arc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 3px;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-arc.plum {
+      color: var(--plum);
+    }
+
+    .tl-arc.gold {
+      color: var(--gold);
+    }
+
+    .tl-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .tl-org {
+      font-size: 0.73rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .tl-bullets li {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .tl-bullets li::before {
+      content: '◈';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 0.48rem;
+      top: 4px;
+    }
+
+    .tl-bullets li strong {
+      color: var(--softer);
+      font-weight: 500;
+    }
+
+    /* ── SKILLS ── */
+    .skills-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skill-col {
+      background: var(--card);
+      padding: 1.6rem;
+    }
+
+    .skill-col-title {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--petal);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--softer);
+      background: var(--plum-dim);
+      transition: border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .stag:hover {
+      border-color: var(--rose);
+      color: var(--petal);
+    }
+
+    /* ── PROJECTS ── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .proj-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .proj-card:hover {
+      border-color: var(--rose);
+      transform: translateY(-3px);
+    }
+
+    .proj-top {
+      height: 4px;
+      background: linear-gradient(90deg, var(--plum), var(--rose), var(--petal));
+    }
+
+    .proj-top.alt {
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+    }
+
+    .proj-body {
+      padding: 1.4rem 1.5rem 1.3rem;
+    }
+
+    .proj-ep {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 2.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .proj-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .proj-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .proj-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      padding: 2px 9px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      text-align: center;
+      padding: 6rem 3rem;
+      position: relative;
+      z-index: 2;
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(107, 63, 160, 0.06) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .contact-ep {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 2px;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, var(--petal), var(--rose));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-sub {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .clink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--softer);
+      cursor: pointer;
+      background: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .clink:hover {
+      color: var(--petal);
+      border-color: var(--rose);
+      background: var(--rose-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--void);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--rose);
+      letter-spacing: 2px;
+    }
+
+    .footer-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.18);
+      text-transform: uppercase;
+    }
+
+    /* ── HANA CHATBOT ── */
+    #hana-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--plum), var(--rose));
+      border: 1px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 24px rgba(107, 63, 160, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #hana-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 32px rgba(192, 132, 160, 0.4);
+    }
+
+    #hana-window {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      z-index: 100;
+      width: 360px;
+      height: 500px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    #hana-window.open {
+      display: flex;
+    }
+
+    .hana-header {
+      padding: 1rem 1.2rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .hana-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--plum), var(--rose));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .hana-info {
+      flex: 1;
+    }
+
+    .hana-name {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--petal);
+      letter-spacing: 1px;
+    }
+
+    .hana-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 2px;
+    }
+
+    .hana-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6ee7b7;
+      box-shadow: 0 0 5px #6ee7b7;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .hana-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .hana-close:hover {
+      color: var(--petal);
+    }
+
+    .hana-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hana-messages::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .hana-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .hana-messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .msg {
+      max-width: 85%;
+      font-size: 0.78rem;
+      line-height: 1.65;
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+    }
+
+    .msg.hana {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--softer);
+      align-self: flex-start;
+      border-bottom-left-radius: 3px;
+    }
+
+    .msg.user {
+      background: linear-gradient(135deg, var(--plum), var(--rose));
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 3px;
+    }
+
+    .msg.typing {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      align-self: flex-start;
+      font-style: italic;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 1px;
+    }
+
+    .hana-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 0 1rem 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .hana-suggestion {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: none;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .hana-suggestion:hover {
+      color: var(--petal);
+      border-color: var(--rose);
+    }
+
+    .hana-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.8rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--card);
+      flex-shrink: 0;
+    }
+
+    #hana-input {
+      flex: 1;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--ivory);
+      padding: 0.55rem 0.9rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #hana-input:focus {
+      border-color: var(--rose);
+    }
+
+    #hana-input::placeholder {
+      color: var(--muted);
+    }
+
+    #hana-send {
+      background: linear-gradient(135deg, var(--plum), var(--rose));
+      border: none;
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    #hana-send:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="tsparticles"></div>
+  <div id="cursor-glow"></div>
+  <div class="grid-bg"></div>
+  <div class="petals-container" id="petals"></div>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-logo">sharvari.</div>
+    <ul class="nav-links">
+      <li><a href="#lore">Lore</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#academy">Academy</a></li>
+      <li><a href="#abilities">Abilities</a></li>
+      <li><a href="#episodes">Episodes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-pill">Open to opportunities</button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-chapter">
+        <span class="chapter-line"></span>
+        Chapter 01 · About
+        <span class="chapter-line"></span>
+      </div>
+      <div class="hero-title">Sharvari Sunil Mayekar.</div>
+      <div class="hero-subtitle">Software & AI/ML Engineer.</div>
+      <div class="hero-role">Full Stack · Machine Learning · Artificial Intelligence · LLM Engineering · Cloud — Buffalo, New York</div>
+      <div class="hero-btns">
+        <button class="btn-primary"
+          onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">View My Arc</button>
+        <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="btn-ghost">Download Resume ↓</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years in the field</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Projects shipped</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">91%</div>
+      <div class="stat-label">Model accuracy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Reps & commits</div>
+    </div>
+  </div>
+
+  <!-- ── LORE ── -->
+  <section class="section" id="lore" style="background:var(--deep);">
+    <div class="sec-header">
+      <span class="sec-num">Arc 00</span>
+      <span class="sec-title">Character Lore</span>
+      <div class="sec-line"></div>
+      <span class="sec-tag">// origin story</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <em>Software & AI/ML Engineer</em> with an <em>MS in Computer Science</em> from the <em>University at Buffalo</em>. My work focuses on building and deploying intelligent systems — <em>LLM applications, RAG pipelines, and full-stack products</em> — backed by production-grade cloud infrastructure.</p>
+        <p>My technical background spans full-stack development (<em>Python, TypeScript, React, Django, FastAPI</em>) and applied ML/AI (<em>PyTorch, LangChain, Transformers, RAG, Claude & OpenAI APIs</em>), with cloud and infrastructure experience across <em>AWS (ECS Fargate, Lambda, Bedrock), Kafka, Docker, and Kubernetes</em>.</p>
+        <p>I've worked as a <em>Full Stack Developer at Saayam For All</em>, a <em>Software Engineer at Ipsos Market Research</em>, and a <em>Data Analytics Intern at Kiya.ai</em> — spanning cloud-native microservices, ML model deployment, and high-throughput data pipelines.</p>
+        <p>I'm currently seeking my next role in <em>Software Engineering, AI/ML Engineering, or LLM Engineering</em>, ideally on a team building intelligent systems that ship.</p>
+      </div>
+      <div class="char-card">
+        <div class="char-avatar">🌸</div>
+        <div class="char-name">Sharvari Sunil Mayekar</div>
+        <div class="char-class">AI/ML Engineer · Class S</div>
+        <div class="char-divider"></div>
+        <div class="stat-row"><span class="sname">ML/AI</span>
+          <div class="sbar-wrap">
+            <div class="sbar sbar-rose" style="width:92%"></div>
+          </div><span class="sval">92</span>
+        </div>
+        <div class="stat-row"><span class="sname">Backend</span>
+          <div class="sbar-wrap">
+            <div class="sbar sbar-gold" style="width:88%"></div>
+          </div><span class="sval">88</span>
+        </div>
+        <div class="stat-row"><span class="sname">Cloud</span>
+          <div class="sbar-wrap">
+            <div class="sbar sbar-petal" style="width:85%"></div>
+          </div><span class="sval">85</span>
+        </div>
+        <div class="stat-row"><span class="sname">Frontend</span>
+          <div class="sbar-wrap">
+            <div class="sbar sbar-rose" style="width:80%"></div>
+          </div><span class="sval">80</span>
+        </div>
+        <div class="stat-row"><span class="sname">Grind</span>
+          <div class="sbar-wrap">
+            <div class="sbar sbar-gold" style="width:99%"></div>
+          </div><span class="sval">99</span>
+        </div>
+        <div class="char-divider"></div>
+        <div class="char-trait"><span class="trait-icon">🏋️</span> Trains daily, ships weekly</div>
+        <div class="char-trait"><span class="trait-icon">🎵</span> KPop fuels every debug session</div>
+        <div class="char-trait"><span class="trait-icon">🎬</span> KDrama emotional range in PRs</div>
+        <div class="char-trait"><span class="trait-icon">⚔️</span> Never skips the training arc</div>
+        <div class="char-trait"><span class="trait-icon">🌸</span> Main character energy, always</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK EXPERIENCE ── -->
+  <section class="section" id="experience" style="background:var(--void);">
+    <div class="sec-header">
+      <span class="sec-num">Arc 01</span>
+      <span class="sec-title">Work Experience</span>
+      <div class="sec-line"></div>
+      <span class="sec-tag">// battle history</span>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Mar 2026 – Present</div>
+          <div class="tl-dot-wrap">
+            <div class="tl-connector"></div>
+            <div class="tl-dot"></div>
+          </div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-arc">// The Current Arc</div>
+          <div class="tl-title">Full Stack Developer</div>
+          <div class="tl-org">Saayam For All · San Jose, CA (Remote)</div>
+          <ul class="tl-bullets">
+            <li>Built and deployed 3 cloud-native microservices in <strong>Python</strong> on <strong>AWS ECS Fargate</strong>, using asynchronous <strong>Kafka</strong> message queues to decouple services and reduce backend p95 latency by <strong>20%</strong> (380ms to 304ms).</li>
+            <li>Built the multi-step <strong>Volunteer Onboarding Wizard</strong> frontend in <strong>React and TypeScript</strong>, managing multi-stage registration state with session persistence and fallback error handling, increasing component reusability by <strong>25%</strong>.</li>
+            <li>Refactored <strong>Redux</strong> state selectors to bind authenticated user identifiers across onboarding stages, eliminating redundant <strong>AWS Amplify</strong> authentication calls.</li>
+            <li>Engineered secure RESTful APIs and serverless validation pipelines using <strong>AWS Lambda, API Gateway, and Cognito</strong>, refactoring legacy onboarding workflows to reduce manual verification effort by <strong>34%</strong>.</li>
+            <li>Authored API specifications covering endpoints, request/response schemas, and validation rules for cross-functional backend handoff.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Nov 2022 – May 2024</div>
+          <div class="tl-dot-wrap">
+            <div class="tl-connector"></div>
+            <div class="tl-dot gold"></div>
+          </div>
+        </div>
+        <div class="tl-card gold-border">
+          <div class="tl-arc gold">// The Corporate Arc</div>
+          <div class="tl-title">Software Engineer</div>
+          <div class="tl-org">Ipsos Market Research · Mumbai, India</div>
+          <ul class="tl-bullets">
+            <li>Developed scalable <strong>Python</strong> backend services and automated ETL pipelines processing <strong>100K+</strong> weekly survey records, enforcing data contract schemas and sanitization rules that reduced ingestion errors by <strong>40%</strong>.</li>
+            <li>Optimized <strong>PostgreSQL</strong> relational schemas, execution plans, and composite indexes across <strong>250+</strong> production databases, cutting average query execution time by <strong>35%</strong> under concurrent traffic.</li>
+            <li>Built automated testing frameworks using <strong>Selenium and PyTest</strong> within Git CI pipelines, cutting regression testing cycles by <strong>30%</strong>.</li>
+            <li>Containerized multi-service Python applications with <strong>Docker</strong> to maintain environment parity across staging and production, partnering with cross-functional teams in Agile sprints and conducting code reviews.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Jun 2022 – Aug 2022</div>
+          <div class="tl-dot-wrap">
+            <div class="tl-connector"></div>
+            <div class="tl-dot rose"></div>
+          </div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-arc">// The Origin Arc</div>
+          <div class="tl-title">Data Analytics Intern</div>
+          <div class="tl-org">Kiya.ai · Navi Mumbai, India</div>
+          <ul class="tl-bullets">
+            <li>Conducted exploratory data analysis and iterative feature selection on raw financial records, developing Python ETL pipelines with <strong>Pandas and NumPy</strong> that reduced data anomalies by <strong>45%</strong> and boosted baseline model performance by <strong>20%</strong>.</li>
+            <li>Transformed processed datasets into interactive executive KPI dashboards using <strong>Tableau, Matplotlib, and Seaborn</strong>, delivering data driven visual summaries that optimized strategic stakeholder reporting cycles.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ACADEMY ── -->
+  <section class="section" id="academy" style="background:var(--deep);">
+    <div class="sec-header">
+      <span class="sec-num">Arc 02</span>
+      <span class="sec-title">Academy</span>
+      <div class="sec-line"></div>
+      <span class="sec-tag">// training grounds</span>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Aug 2024 – Jan 2026</div>
+          <div class="tl-dot-wrap">
+            <div class="tl-connector"></div>
+            <div class="tl-dot plum"></div>
+          </div>
+        </div>
+        <div class="tl-card plum-border">
+          <div class="tl-arc plum">// The Graduate Arc</div>
+          <div class="tl-title">Master of Science in Computer Science</div>
+          <div class="tl-org">University at Buffalo · Buffalo, NY</div>
+          <ul class="tl-bullets">
+            <li><strong>Relevant Coursework:</strong> Machine Learning, Deep Learning, Computer Vision & Image Processing, Pattern Recognition, Operating Systems, Algorithm Analysis & Design, Data Intensive Computing.</li>
+            <li>Specialized in <strong>Artificial Intelligence, Deep Learning, Computer Vision, Distributed Computing, and Algorithms</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Aug 2019 – Apr 2022</div>
+          <div class="tl-dot-wrap">
+            <div class="tl-connector"></div>
+            <div class="tl-dot gold"></div>
+          </div>
+        </div>
+        <div class="tl-card gold-border">
+          <div class="tl-arc gold">// The Undergraduate Arc</div>
+          <div class="tl-title">Bachelor of Science in Information Technology</div>
+          <div class="tl-org">University of Mumbai · Mumbai, India</div>
+          <ul class="tl-bullets">
+            <li><strong>Relevant Coursework:</strong> Python, Java, C/C++, Object Oriented Programming, Data Structures & Algorithms, Database Management Systems, Full Stack Development, Statistics, Software Engineering.</li>
+            <li>Built core foundations in computational problem-solving, algorithm optimization, relational database architectures, and full-stack software development.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ABILITIES ── -->
+  <section class="section" id="abilities" style="background:var(--void);">
+    <div class="sec-header">
+      <span class="sec-num">Arc 03</span>
+      <span class="sec-title">Abilities Unlocked</span>
+      <div class="sec-line"></div>
+      <span class="sec-tag">// skill tree</span>
+    </div>
+    <div class="skills-cols">
+      <div class="skill-col">
+        <div class="skill-col-title">AI & GenAI</div>
+        <div class="skill-tags">
+          <span class="stag">PyTorch</span><span class="stag">TensorFlow</span>
+          <span class="stag">Keras</span><span class="stag">Scikit-learn</span>
+          <span class="stag">LangChain</span><span class="stag">Hugging Face</span>
+          <span class="stag">CNNs</span><span class="stag">Transformers</span>
+          <span class="stag">LLMs</span><span class="stag">RAG</span>
+          <span class="stag">Pandas</span><span class="stag">NumPy</span>
+          <span class="stag">PySpark</span><span class="stag">OpenAI / Claude API</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Cloud & Infra</div>
+        <div class="skill-tags">
+          <span class="stag">AWS (ECS, Lambda, API Gateway)</span>
+          <span class="stag">Kubernetes</span><span class="stag">Docker</span>
+          <span class="stag">Kafka (MSK)</span><span class="stag">Git</span>
+          <span class="stag">CI/CD Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Data & Frameworks</div>
+        <div class="skill-tags">
+          <span class="stag">Django</span><span class="stag">FastAPI</span>
+          <span class="stag">Flask</span><span class="stag">Node.js</span>
+          <span class="stag">React</span><span class="stag">PostgreSQL</span>
+          <span class="stag">MySQL</span><span class="stag">Tableau</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Languages</div>
+        <div class="skill-tags">
+          <span class="stag">Python</span><span class="stag">TypeScript</span>
+          <span class="stag">JavaScript</span><span class="stag">C</span>
+          <span class="stag">C++</span><span class="stag">SQL</span>
+          <span class="stag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Specializations</div>
+        <div class="skill-tags">
+          <span class="stag">RAG Architectures</span><span class="stag">Computer Vision</span>
+          <span class="stag">Multimodal AI</span><span class="stag">Deep Learning</span>
+          <span class="stag">Distributed Queues</span><span class="stag">Grad-CAM</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Certifications</div>
+        <div class="skill-tags">
+          <span class="stag">Gen AI with LLMs (DeepLearning.AI & AWS)</span>
+          <span class="stag">Claude with Amazon Bedrock (Anthropic & AWS)</span>
+          <span class="stag">Full-Stack Web Dev Bootcamp (Udemy)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EPISODES ── -->
+  <section class="section" id="episodes" style="background:var(--deep);">
+    <div class="sec-header">
+      <span class="sec-num">Arc 04</span>
+      <span class="sec-title">Key Episodes</span>
+      <div class="sec-line"></div>
+      <span class="sec-tag">// featured projects</span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top"></div>
+        <div class="proj-body">
+          <div class="proj-ep">Episode 01 · GenAI · RAG · Jul 2026</div>
+          <div class="proj-name">HANA: RAG-Powered Portfolio Assistant</div>
+          <div class="proj-desc">
+            Engineered a retrieval augmented generation pipeline for a personal portfolio chatbot, chunking and embedding project and career documents into a pgvector database and retrieving relevant context at query time to ground Claude API responses, replacing a static hardcoded system prompt with dynamic, source-grounded answer generation.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">pgvector</span>
+            <span class="chip">Anthropic API (Claude)</span><span class="chip">RAG</span><span class="chip">Embeddings</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top alt"></div>
+        <div class="proj-body">
+          <div class="proj-ep">Episode 02 · Full Stack · Multimodal AI · Apr 2026</div>
+          <div class="proj-name">SmartWardrobe: AI-Driven Digital Closet & Outfit Stylist</div>
+          <div class="proj-desc">
+            Developed a full stack digital wardrobe web application with automated image processing via Cloudinary AI to extract and categorize garments with zero hosting overhead, and integrated the Gemini API to orchestrate an intelligent styling recommendation engine that analyzes local weather data and user calendar schedules to dynamically generate personalized outfit combinations.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">React</span><span class="chip">Supabase</span><span class="chip">Gemini API</span>
+            <span class="chip">Cloudinary AI</span><span class="chip">TypeScript</span><span class="chip">Multimodal AI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"></div>
+        <div class="proj-body">
+          <div class="proj-ep">Episode 03 · Full Stack · Django · Jan 2026</div>
+          <div class="proj-name">Automated Time-Table Generator</div>
+          <div class="proj-desc">
+            Built a Django based automated scheduling platform with a custom backtracking optimization engine that resolves room and resource scheduling constraints. Implemented Role Based Access Control and secure RESTful APIs for multi user timetable management, reducing API response latency during concurrent CRUD operations.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Django</span><span class="chip">Python</span><span class="chip">REST APIs</span>
+            <span class="chip">PostgreSQL</span><span class="chip">Optimization Engine</span><span class="chip">RBAC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top alt"></div>
+        <div class="proj-body">
+          <div class="proj-ep">Episode 04 · Deep Learning · Computer Vision · Oct 2025</div>
+          <div class="proj-name">Handwriting Recognition for Accessibility</div>
+          <div class="proj-desc">
+            Designed and trained a multi architecture deep learning pipeline (CNN, CRNN, and Transformers) with data augmentation, label smoothing, and AdamW optimization, achieving 91% validation accuracy for handwriting to text recognition. Implemented Grad-CAM interpretability visualizations to surface model attention patterns and benchmark the three architectures across latency and generalization metrics for dyslexic and neurodiverse users.
+          </div>
+          <div class="proj-chips">
+            <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">CNN</span>
+            <span class="chip">CRNN</span><span class="chip">Transformers</span><span class="chip">Grad-CAM</span><span class="chip">AdamW</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact-section" id="contact">
+    <div class="contact-ep">Final Arc</div>
+    <div class="contact-title">Let's build<br>something intelligent.</div>
+    <div class="contact-sub">
+      Actively looking for my next role in Software Engineering, AI/ML, or LLM Engineering.
+    </div>
+    <div class="contact-links">
+      <a href="mailto:sharvarim127@gmail.com" class="clink">✉ Email</a>
+      <a href="https://www.linkedin.com/in/sharvarimayekar/" target="_blank" rel="noopener noreferrer" class="clink">⚡
+        LinkedIn</a>
+      <a href="https://github.com/piercetheshar" target="_blank" rel="noopener noreferrer" class="clink">⌥ GitHub</a>
+      <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="clink">📜 Resume</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">sharvari.</div>
+    <div class="footer-text">Arc System v1.0 · All abilities unlocked</div>
+    <div class="footer-text">© 2026 · Built during the grind arc · Buffalo, NY</div>
+  </footer>
+
+  <!-- ── HANA CHATBOT ── -->
+  <button id="hana-btn" onclick="toggleHana()" title="Chat with HANA">🌸</button>
+
+  <div id="hana-window">
+    <div class="hana-header">
+      <div class="hana-avatar">🌸</div>
+      <div class="hana-info">
+        <div class="hana-name">HANA</div>
+        <div class="hana-status"><span class="hana-dot"></span> Holistic Assistant · Always online</div>
+      </div>
+      <button class="hana-close" onclick="toggleHana()">✕</button>
+    </div>
+    <div class="hana-messages" id="hana-messages"></div>
+    <div class="hana-suggestions" id="hana-suggestions">
+      <button class="hana-suggestion" onclick="askSuggestion('Tell me about Sharvari')">Who is Sharvari?</button>
+      <button class="hana-suggestion" onclick="askSuggestion('What projects has Sharvari built?')">Projects</button>
+      <button class="hana-suggestion" onclick="askSuggestion('What is her tech stack?')">Tech stack</button>
+      <button class="hana-suggestion" onclick="askSuggestion('Where is she located and is she open to work?')">Open to
+        work?</button>
+    </div>
+    <div class="hana-input-row">
+      <input id="hana-input" type="text" placeholder="Ask me anything about Sharvari…"
+        onkeydown="if(event.key==='Enter') sendHana()">
+      <button id="hana-send" onclick="sendHana()">↑</button>
+    </div>
+  </div>
+
+  <!-- ── TSPARTICLES CDN ── -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+  <script>
+    // ── TSPARTICLES CONSTELLATION CONFIGURATION ──
+    // Easily customize particle colors, density, speed, link distance, and mouse interactivity:
+    if (typeof tsParticles !== 'undefined') {
+      tsParticles.load('tsparticles', {
+        fpsLimit: 60,
+        detectRetina: true,
+        fullScreen: { enable: false }, // Contained within #tsparticles background
+        particles: {
+          number: {
+            value: 75,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            // Luminous theme palette: Brighter Lavender, Radiant Indigo, Soft Cashmere, Starlight White, Champagne
+            value: ['#dbe0ff', '#b3baf5', '#8fa0ff', '#ffffff', '#eef0f7', '#ffd6e0']
+          },
+          shape: {
+            type: 'circle'
+          },
+          opacity: {
+            value: 0.95,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 0.8,
+              opacity_min: 0.55,
+              sync: false
+            }
+          },
+          size: {
+            value: 3.0,
+            random: { enable: true, minimumValue: 1.8 },
+            anim: {
+              enable: true,
+              speed: 1.2,
+              size_min: 1.2,
+              sync: false
+            }
+          },
+          links: {
+            enable: true,
+            distance: 155,
+            color: '#8fa0ff',
+            opacity: 0.55,
+            width: 1.4,
+            triangles: {
+              enable: false
+            }
+          },
+          move: {
+            enable: true,
+            speed: 0.7,
+            direction: 'none',
+            random: true,
+            straight: false,
+            outModes: {
+              default: 'out'
+            }
+          }
+        },
+        interactivity: {
+          // Detect mouse events across the window seamlessly without blocking clicks/scrolling
+          detectsOn: 'window',
+          events: {
+            onHover: {
+              enable: true,
+              mode: 'grab' // Connects glowing lines to cursor
+            },
+            onClick: {
+              enable: true,
+              mode: 'push' // Adds particles on click
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 210,
+              links: {
+                opacity: 0.9,
+                color: '#dbe0ff'
+              }
+            },
+            push: {
+              quantity: 4
+            }
+          }
+        },
+        responsive: [
+          {
+            maxWidth: 768,
+            options: {
+              particles: {
+                number: {
+                  value: 38,
+                  density: { enable: true, value_area: 500 }
+                },
+                links: {
+                  distance: 110,
+                  opacity: 0.45,
+                  color: '#8fa0ff',
+                  width: 1.2
+                },
+                move: {
+                  speed: 0.45
+                }
+              },
+              interactivity: {
+                events: {
+                  onHover: { enable: false }
+                }
+              }
+            }
+          }
+        ]
+      });
+    }
+
+    // ── CURSOR GLOW ──
+    const glow = document.getElementById('cursor-glow');
+
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    // ── FLOATING PETALS ──
+    const petalContainer = document.getElementById('petals');
+    const petalColors = [
+      'rgba(91,110,225,0.4)', 'rgba(154,163,240,0.3)',
+      'rgba(63,63,122,0.35)', 'rgba(238,240,247,0.14)'
+    ];
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal-el';
+      const size = 4 + Math.random() * 6;
+      p.style.cssText = `
+    left:${Math.random() * 100}%;
+    width:${size}px;height:${size}px;
+    background:${petalColors[Math.floor(Math.random() * petalColors.length)]};
+    border-radius:50%;
+    animation-duration:${10 + Math.random() * 16}s;
+    animation-delay:${Math.random() * 15}s;
+  `;
+      petalContainer.appendChild(p);
+    }
+
+    // ── HANA CHATBOT ──
+    let hanaOpen = false;
+    let hanaHistory = [];
+
+    const SYSTEM_PROMPT = `You are HANA (Holistic Assistant for Navigating Achievements) — the AI assistant embedded in Sharvari Sunil Mayekar's portfolio website. You are warm, elegant, and slightly poetic in tone — fitting the aesthetic of the site. You speak in first person about Sharvari (e.g. "Sharvari built..." or "She specializes in..."). Keep answers concise, friendly, and impressive. Never make up information — only use what's provided below.
+
+ABOUT SHARVARI:
+- Full name: Sharvari Sunil Mayekar
+- Location: New York, USA (Buffalo, NY) | Phone: 716-903-7728 | Email: sharvarim127@gmail.com
+- Education: MS in Computer Science, University at Buffalo (Aug 2024 – Jan 2026) | Bachelor of Science in Information Technology, University of Mumbai (Aug 2019 – Apr 2022)
+- Work & Expertise: Centers on building and shipping intelligent systems — LLM applications, RAG pipelines, Full-Stack applications, and cloud/distributed infrastructure (AWS, Kafka, Docker, Kubernetes).
+- Engineering Philosophy: Highly disciplined, detail-oriented, with rigorous engineering standards. Honest about boundaries of experience, actively closes skill gaps.
+- Currently: Full Stack Developer at Saayam For All (Mar 2026–Present, remote, San Jose, CA) — a nonprofit connecting volunteers globally
+- Job status: Actively seeking Software Engineer / AI-ML Engineer / LLM Engineer roles in the US.
+- Personality: Loves the gym, KPop, KDramas, and anime (especially shonen). Main character energy. Never skips a training arc.
+
+EXPERIENCE:
+1. Full Stack Developer — Saayam For All, San Jose, CA (Remote) (Mar 2026–Present):
+   - Built and deployed 3 cloud-native microservices in Python on AWS ECS Fargate, using asynchronous Kafka message queues to decouple services and reduce backend p95 latency by 20% (380ms to 304ms).
+   - Built the multi-step Volunteer Onboarding Wizard frontend in React and TypeScript, managing multi-stage registration state with session persistence and fallback error handling, increasing component reusability by 25%.
+   - Refactored Redux state selectors to bind authenticated user identifiers across onboarding stages, eliminating redundant AWS Amplify authentication calls.
+   - Engineered secure RESTful APIs and serverless validation pipelines using AWS Lambda, API Gateway, and Cognito, refactoring legacy onboarding workflows to reduce manual verification effort by 34%.
+   - Authored API specifications covering endpoints, request/response schemas, and validation rules for cross-functional backend handoff.
+2. Software Engineer — Ipsos Market Research, Mumbai, India (Nov 2022–May 2024):
+   - Developed scalable Python backend services and automated ETL pipelines processing 100K+ weekly survey records, enforcing data contract schemas and sanitization rules that reduced ingestion errors by 40%.
+   - Optimized PostgreSQL relational schemas, execution plans, and composite indexes across 250+ production databases, cutting average query execution time by 35% under concurrent traffic.
+   - Built automated testing frameworks using Selenium and PyTest within Git CI pipelines, cutting regression testing cycles by 30%.
+   - Containerized multi-service Python applications with Docker to maintain environment parity across staging and production, partnering with cross-functional teams in Agile sprints and conducting code reviews.
+3. Data Analytics Intern — Kiya.ai, Navi Mumbai, India (Jun 2022–Aug 2022):
+   - Conducted exploratory data analysis and iterative feature selection on raw financial records, developing Python ETL pipelines with Pandas and NumPy that reduced data anomalies by 45% and boosted baseline model performance by 20%.
+   - Transformed processed datasets into interactive executive KPI dashboards using Tableau, Matplotlib, and Seaborn, delivering data driven visual summaries that optimized strategic stakeholder reporting cycles.
+
+ACADEMY / EDUCATION:
+1. Master of Science in Computer Science — University at Buffalo, Buffalo, NY (Aug 2024 – Jan 2026):
+   - Relevant Coursework: Machine Learning, Deep Learning, Computer Vision & Image Processing, Pattern Recognition, Operating Systems, Algorithm Analysis & Design, Data Intensive Computing.
+   - Core Specializations: Artificial Intelligence, Deep Learning, Computer Vision, Distributed Computing, and Algorithms.
+2. Bachelor of Science in Information Technology — University of Mumbai, Mumbai, India (Aug 2019 – Apr 2022):
+   - Relevant Coursework: Python, Java, C/C++, Object Oriented Programming, Data Structures & Algorithms, Database Management Systems, Full Stack Development, Statistics, Software Engineering.
+
+PROJECTS:
+1. HANA: RAG-Powered Portfolio Assistant (Jul 2026) — Python, LangChain, pgvector, Anthropic API (Claude). Engineered a retrieval augmented generation pipeline for a personal portfolio chatbot, chunking and embedding project and career documents into a pgvector database and retrieving relevant context at query time to ground Claude API responses, replacing a static hardcoded system prompt with dynamic, source-grounded answer generation.
+2. SmartWardrobe: AI-Driven Digital Closet & Outfit Stylist (Apr 2026) — React, Supabase, Gemini API, Cloudinary AI. Developed a full stack digital wardrobe web application with automated image processing via Cloudinary AI to extract and categorize garments with zero hosting overhead, and integrated the Gemini API to orchestrate an intelligent styling recommendation engine that analyzes local weather data and user calendar schedules to dynamically generate personalized outfit combinations.
+3. Automated Time-Table Generator (Jan 2026) — Django, Python, REST APIs, PostgreSQL. Built a Django based automated scheduling platform with a custom backtracking optimization engine that resolves room and resource scheduling constraints. Implemented Role Based Access Control and secure RESTful APIs for multi user timetable management, reducing API response latency during concurrent CRUD operations.
+4. Handwriting Recognition for Accessibility (Oct 2025) — Python, PyTorch, CNN, CRNN, Transformers. Designed and trained a multi architecture deep learning pipeline (CNN, CRNN, and Transformers) with data augmentation, label smoothing, and AdamW optimization, achieving 91% validation accuracy for handwriting to text recognition. Implemented Grad-CAM interpretability visualizations to surface model attention patterns and benchmark the three architectures across latency and generalization metrics for dyslexic and neurodiverse users.
+
+TECHNICAL SKILLS:
+- Languages: Python, TypeScript, JavaScript, C, C++, SQL
+- AI & GenAI: Pandas, NumPy, PyTorch, TensorFlow, Keras, Scikit-learn, PySpark, LangChain, Hugging Face, CNNs, Transformers, LLMs, Retrieval-Augmented Generation (RAG), OpenAI API, Anthropic API (Claude)
+- Cloud & Infra: AWS, Kubernetes, Docker, Kafka (MSK), Git, CI/CD
+- Data & Frameworks: Django, FastAPI, Flask, Node.js, React, PostgreSQL, MySQL, Tableau
+
+CERTIFICATIONS:
+- Generative AI with Large Language Models (DeepLearning.AI & Amazon Web Services -- June 2026)
+- Claude with Amazon Bedrock (Anthropic Academy & AWS -- Apr 2026)
+- The Complete Full-Stack Web Development Bootcamp (Udemy - Angela Yu -- Dec 2025)
+
+LINKS:
+- Email: sharvarim127@gmail.com
+- LinkedIn: https://www.linkedin.com/in/sharvarimayekar/
+- GitHub: https://github.com/piercetheshar
+- Resume: Sharvari_Mayekar_Resume.pdf
+
+If asked something not covered above, say warmly that you don't have that detail but Sharvari would love to connect directly.`;
+
+    function toggleHana() {
+      hanaOpen = !hanaOpen;
+      const win = document.getElementById('hana-window');
+      win.classList.toggle('open', hanaOpen);
+      if (hanaOpen && hanaHistory.length === 0) {
+        addMsg('hana', "Hi! I'm HANA 🌸 — Sharvari's personal AI assistant. I know everything about her projects, experience, skills, and more. What would you like to know?");
+      }
+    }
+
+    function addMsg(role, text) {
+      const msgs = document.getElementById('hana-messages');
+      const div = document.createElement('div');
+      div.className = `msg ${role}`;
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const msgs = document.getElementById('hana-messages');
+      const div = document.createElement('div');
+      div.className = 'msg typing';
+      div.id = 'hana-typing';
+      div.textContent = 'hana is thinking…';
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('hana-typing');
+      if (t) t.remove();
+    }
+
+    function askSuggestion(q) {
+      document.getElementById('hana-input').value = q;
+      sendHana();
+      document.getElementById('hana-suggestions').style.display = 'none';
+    }
+
+    async function sendHana() {
+      const input = document.getElementById('hana-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      addMsg('user', text);
+      hanaHistory.push({ role: 'user', content: text });
+
+      addTyping();
+
+      try {
+        const response = await fetch('/api/hana', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: hanaHistory
+          })
+        });
+
+        const data = await response.json();
+        removeTyping();
+
+        if (!response.ok || data.error) {
+          addMsg('hana', data.error || "I'm having a moment — please try again!");
+          return;
+        }
+
+        const reply = data.reply || "I'm having a moment — please try again!";
+        addMsg('hana', reply);
+        hanaHistory.push({ role: 'assistant', content: reply });
+
+      } catch (err) {
+        removeTyping();
+        addMsg('hana', "Something went wrong on my end 🌸 Please try again in a moment.");
+      }
+    }
+  </script>
+</body>
+
+</html>

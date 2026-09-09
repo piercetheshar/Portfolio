@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Gradient for 'S' -->
+    <linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b6bdfa" />
+      <stop offset="50%" stop-color="#9aa3f0" />
+      <stop offset="100%" stop-color="#5b6ee1" />
+    </linearGradient>
+
+    <!-- Subtle Border Glow Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(182, 189, 250, 0.8)" />
+      <stop offset="100%" stop-color="rgba(91, 110, 225, 0.2)" />
+    </linearGradient>
+
+    <!-- Ambient Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle Tile -->
+  <rect width="64" height="64" rx="16" fill="#0b0b18" />
+  
+  <!-- Subtle Border with Gradient Glow -->
+  <rect width="62" height="62" x="1" y="1" rx="15" fill="none" stroke="url(#borderGrad)" stroke-width="1.8" />
+  
+  <!-- Centered Bold Monogram "S" (Without Dot) -->
+  <text 
+    x="50%" 
+    y="53%" 
+    text-anchor="middle" 
+    dominant-baseline="central"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Poppins', 'DM Sans', 'Segoe UI', sans-serif" 
+    font-weight="700" 
+    font-size="38" 
+    fill="url(#sGrad)"
+    filter="url(#glow)"
+  >S</text>
+</svg>
