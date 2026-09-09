@@ -96,6 +96,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .nav-logo {
@@ -105,6 +106,7 @@
       font-weight: 600;
       letter-spacing: 1.5px;
       color: var(--petal);
+      z-index: 60;
     }
 
     .nav-links {
@@ -127,6 +129,12 @@
       color: var(--petal);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .nav-pill {
       background: transparent;
       border: 1px solid var(--border);
@@ -144,6 +152,42 @@
     .nav-pill:hover {
       background: var(--rose-dim);
       color: var(--petal);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 60;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--ivory);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+      background: var(--petal);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+      background: var(--petal);
     }
 
     /* ── HERO ── */
@@ -219,34 +263,37 @@
 
     .hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 5.5rem;
+      font-size: clamp(2.4rem, 7.5vw, 5.5rem);
       font-weight: 300;
-      line-height: 1.0;
+      line-height: 1.05;
       letter-spacing: -0.5px;
       color: var(--ivory);
       margin-bottom: 0.2rem;
+      word-break: break-word;
     }
 
     .hero-subtitle {
       font-family: 'Poppins', sans-serif;
-      font-size: 5.5rem;
+      font-size: clamp(2.2rem, 7vw, 5.5rem);
       font-weight: 700;
       font-style: normal;
-      line-height: 1.0;
+      line-height: 1.08;
       letter-spacing: -0.5px;
       margin-bottom: 2rem;
       color: #7682e5;
       cursor: default;
       display: block;
+      word-break: break-word;
     }
 
     .hero-role {
       font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 3px;
+      font-size: clamp(0.52rem, 1.8vw, 0.62rem);
+      letter-spacing: clamp(1.5px, 0.6vw, 3px);
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 1.8rem;
+      line-height: 1.6;
     }
 
     .hero-tagline {
@@ -1219,6 +1266,260 @@
       opacity: 0.85;
       transform: scale(1.05);
     }
+
+    /* ── COMPREHENSIVE RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS ── */
+    @media (max-width: 992px) {
+      nav {
+        padding: 1.1rem 1.8rem;
+      }
+      .section {
+        padding: 4.5rem 2rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .char-card {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .skills-cols {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+      .nav-pill {
+        display: none;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background: rgba(10, 10, 20, 0.97);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 0.82rem;
+        letter-spacing: 3.5px;
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-16px);
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a {
+        font-size: 1.15rem;
+        padding: 0.6rem 1.4rem;
+        color: var(--softer);
+        display: inline-block;
+      }
+      .nav-links a:hover,
+      .nav-links a:active {
+        color: var(--petal);
+      }
+
+      .hero {
+        padding: 5.5rem 1.25rem 4rem;
+        min-height: 90svh;
+      }
+      .hero-chapter {
+        margin-bottom: 1.5rem;
+      }
+      .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        gap: 0.75rem;
+      }
+      .btn-primary, .btn-ghost {
+        width: 100%;
+        min-height: 48px;
+        font-size: 0.8rem;
+      }
+
+      .stat-strip {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stat-item {
+        max-width: none;
+        padding: 1.4rem 0.75rem;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
+      .stat-item:nth-child(3) {
+        border-bottom: none;
+      }
+      .stat-item:nth-child(4) {
+        border-right: none;
+        border-bottom: none;
+      }
+      .stat-num {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 3.8rem 1.25rem;
+      }
+      .sec-header {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 2rem;
+      }
+      .sec-title {
+        font-size: 1.5rem;
+      }
+      .sec-tag {
+        display: none;
+      }
+
+      /* Timeline Stacked Layout on Mobile */
+      .timeline {
+        gap: 1.25rem;
+      }
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+      .tl-left {
+        align-items: flex-start;
+        padding-top: 0;
+      }
+      .tl-date {
+        text-align: left;
+        margin-bottom: 0.2rem;
+        color: var(--petal);
+        font-size: 0.52rem;
+        font-weight: 500;
+      }
+      .tl-dot-wrap {
+        display: none;
+      }
+      .tl-card {
+        padding: 1.25rem 1.1rem;
+        border-left-width: 2px;
+      }
+      .tl-title {
+        font-size: 1.05rem;
+      }
+      .tl-org {
+        font-size: 0.72rem;
+        margin-bottom: 0.75rem;
+      }
+      .tl-bullets li {
+        font-size: 0.75rem;
+        padding-left: 1rem;
+        line-height: 1.6;
+      }
+
+      .skills-cols {
+        grid-template-columns: 1fr;
+      }
+      .skill-col {
+        padding: 1.3rem 1.1rem;
+      }
+
+      .proj-body {
+        padding: 1.25rem 1.1rem;
+      }
+      .proj-name {
+        font-size: 1.1rem;
+      }
+      .proj-desc {
+        font-size: 0.74rem;
+      }
+
+      .contact-section {
+        padding: 4rem 1.25rem;
+      }
+      .contact-title {
+        font-size: clamp(2rem, 6.5vw, 2.8rem);
+      }
+      .contact-links {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        gap: 0.75rem;
+      }
+      .clink {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        font-size: 0.62rem;
+        min-height: 44px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+        padding: 2.2rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #hana-btn {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+      }
+      #hana-window {
+        width: calc(100vw - 1.5rem);
+        height: min(74vh, 520px);
+        right: 0.75rem;
+        bottom: 5rem;
+        border-radius: 14px;
+      }
+      #hana-input {
+        font-size: 16px; /* Prevents auto-zoom on iOS */
+      }
+      .msg {
+        max-width: 92%;
+        font-size: 0.76rem;
+      }
+      .hana-suggestion {
+        font-size: 0.54rem;
+        padding: 5px 10px;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-glow {
+        display: none !important;
+      }
+      .btn-primary:hover,
+      .btn-ghost:hover,
+      .proj-card:hover {
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -1232,15 +1533,22 @@
   <!-- ── NAV ── -->
   <nav>
     <div class="nav-logo">sharvari.</div>
-    <ul class="nav-links">
-      <li><a href="#lore">Lore</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#academy">Academy</a></li>
-      <li><a href="#abilities">Abilities</a></li>
-      <li><a href="#episodes">Episodes</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#lore" onclick="closeNav()">Lore</a></li>
+      <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+      <li><a href="#academy" onclick="closeNav()">Academy</a></li>
+      <li><a href="#abilities" onclick="closeNav()">Abilities</a></li>
+      <li><a href="#episodes" onclick="closeNav()">Episodes</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
-    <button class="nav-pill">Open to opportunities</button>
+    <div class="nav-actions">
+      <button class="nav-pill" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Open to opportunities</button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- ── HERO ── -->
@@ -1882,6 +2190,39 @@ If asked something not covered above, say warmly that you don't have that detail
         addMsg('hana', "Hi! I'm HANA 🌸 — Sharvari's personal AI assistant. I know everything about her projects, experience, skills, and more. What would you like to know?");
       }
     }
+
+    // ── MOBILE NAV TOGGLE ──
+    function toggleNav() {
+      const links = document.getElementById('nav-links');
+      const toggle = document.getElementById('nav-toggle');
+      if (!links || !toggle) return;
+      const isOpen = links.classList.toggle('open');
+      toggle.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    function closeNav() {
+      const links = document.getElementById('nav-links');
+      const toggle = document.getElementById('nav-toggle');
+      if (links && toggle) {
+        links.classList.remove('open');
+        toggle.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeNav();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeNav();
+        if (hanaOpen) toggleHana();
+      }
+    });
 
     function addMsg(role, text) {
       const msgs = document.getElementById('hana-messages');
