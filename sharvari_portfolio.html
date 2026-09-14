@@ -589,71 +589,46 @@
     .char-divider {
       height: 1px;
       background: var(--border);
-      margin: 0.9rem 0;
+      margin: 0.9rem 0 1.1rem;
     }
 
-    .stat-row {
+    .char-tags {
       display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.72rem;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 1.25rem;
     }
 
-    .sname {
+    .char-tag {
       font-family: 'Space Mono', monospace;
-      font-size: 0.5rem;
-      letter-spacing: 1px;
-      color: var(--muted);
+      font-size: 0.54rem;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      width: 58px;
-      flex-shrink: 0;
-    }
-
-    .sbar-wrap {
-      flex: 1;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .sbar {
-      height: 100%;
-      border-radius: 2px;
-    }
-
-    .sbar-rose {
-      background: linear-gradient(90deg, var(--plum), var(--petal));
-    }
-
-    .sbar-gold {
-      background: linear-gradient(90deg, var(--rose), var(--gold));
-    }
-
-    .sbar-petal {
-      background: linear-gradient(90deg, var(--petal), #fff);
-    }
-
-    .sval {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.5rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
       color: var(--softer);
-      width: 22px;
-      text-align: right;
-      flex-shrink: 0;
+      background: var(--plum-dim);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      cursor: default;
     }
 
-    .char-trait {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 0.45rem;
+    .char-tag:hover {
+      border-color: var(--rose);
+      color: var(--petal);
+      background: var(--rose-dim);
     }
 
-    .trait-icon {
-      font-size: 0.85rem;
+    .char-highlight {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.55;
+      color: var(--softer);
+      background: rgba(224, 92, 138, 0.05);
+      border-left: 2px solid var(--rose);
+      padding: 0.7rem 0.9rem;
+      border-radius: 0 4px 4px 0;
     }
 
     /* ── TIMELINE ── */
@@ -1695,37 +1670,16 @@
         <div class="char-name">Sharvari Sunil Mayekar</div>
         <div class="char-class">Full Stack & AI/ML Engineer</div>
         <div class="char-divider"></div>
-        <div class="stat-row"><span class="sname">ML/AI</span>
-          <div class="sbar-wrap">
-            <div class="sbar sbar-rose" style="width:92%"></div>
-          </div><span class="sval">92</span>
+        <div class="char-tags">
+          <span class="char-tag glow-trigger">LLM Engineering</span>
+          <span class="char-tag glow-trigger">RAG Systems</span>
+          <span class="char-tag glow-trigger">Computer Vision</span>
+          <span class="char-tag glow-trigger">MLOps & Cloud</span>
+          <span class="char-tag glow-trigger">Full-Stack Development</span>
         </div>
-        <div class="stat-row"><span class="sname">Backend</span>
-          <div class="sbar-wrap">
-            <div class="sbar sbar-gold" style="width:88%"></div>
-          </div><span class="sval">88</span>
+        <div class="char-highlight">
+          Reduced backend p95 latency by 20% shipping Kafka-based microservices at Saayam For All.
         </div>
-        <div class="stat-row"><span class="sname">Cloud</span>
-          <div class="sbar-wrap">
-            <div class="sbar sbar-petal" style="width:85%"></div>
-          </div><span class="sval">85</span>
-        </div>
-        <div class="stat-row"><span class="sname">Frontend</span>
-          <div class="sbar-wrap">
-            <div class="sbar sbar-rose" style="width:80%"></div>
-          </div><span class="sval">80</span>
-        </div>
-        <div class="stat-row"><span class="sname">Grind</span>
-          <div class="sbar-wrap">
-            <div class="sbar sbar-gold" style="width:99%"></div>
-          </div><span class="sval">99</span>
-        </div>
-        <div class="char-divider"></div>
-        <div class="char-trait"><span class="trait-icon">🏋️</span> Trains daily, ships weekly</div>
-        <div class="char-trait"><span class="trait-icon">🎵</span> KPop fuels every debug session</div>
-        <div class="char-trait"><span class="trait-icon">🎬</span> KDrama emotional range in PRs</div>
-        <div class="char-trait"><span class="trait-icon">⚔️</span> Never skips the training arc</div>
-        <div class="char-trait"><span class="trait-icon">🌸</span> Main character energy, always</div>
       </div>
     </div>
   </section>
