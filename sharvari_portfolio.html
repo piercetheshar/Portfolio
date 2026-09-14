@@ -47,38 +47,69 @@
       overflow-x: hidden;
     }
 
-    /* ── PARTICLES CONSTELLATION NETWORK ── */
-    #tsparticles {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
     /* ── CURSOR GLOW ── */
     #cursor-glow {
       position: fixed;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(192, 132, 160, 0.06) 0%, rgba(107, 63, 160, 0.03) 40%, transparent 70%);
+      inset: 0;
       pointer-events: none;
       z-index: 1;
-      transform: translate(-50%, -50%);
+    }
+
+    .cursor-glow-primary {
+      position: fixed;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(91, 110, 225, 0.058) 0%,
+        rgba(154, 163, 240, 0.038) 30%,
+        rgba(63, 63, 122, 0.013) 55%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%) scale(1);
       left: 50%;
       top: 50%;
-      transition: left 0.1s ease-out, top 0.1s ease-out;
+      transition: left 0.1s ease-out, top 0.1s ease-out, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease-out;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+      will-change: left, top, transform;
     }
+
+    .cursor-glow-secondary {
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(154, 163, 240, 0.085) 0%,
+        rgba(91, 110, 225, 0.045) 40%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%) scale(1);
+      left: 50%;
+      top: 50%;
+      transition: left 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), top 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out;
+      opacity: 0.9;
+      filter: blur(2px);
+      mix-blend-mode: screen;
+      will-change: left, top, transform;
+    }
+
+
 
     /* ── GRID BG ── */
     .grid-bg {
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(192, 132, 160, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(192, 132, 160, 0.035) 1px, transparent 1px);
+        linear-gradient(rgba(192, 132, 160, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 132, 160, 0.07) 1px, transparent 1px);
       background-size: 52px 52px;
       pointer-events: none;
       z-index: 0;
@@ -393,49 +424,6 @@
       }
     }
 
-    /* ── STAT STRIP ── */
-    .stat-strip {
-      background: var(--panel);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stat-item {
-      flex: 1;
-      max-width: 240px;
-      padding: 1.8rem 1rem;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .stat-item:last-child {
-      border-right: none;
-    }
-
-    .stat-num {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 500;
-      font-style: normal;
-      background: linear-gradient(135deg, var(--petal), var(--rose));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.5rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 7px;
-    }
 
     /* ── SECTIONS ── */
     .section {
@@ -1171,6 +1159,73 @@
       border-bottom-left-radius: 3px;
     }
 
+    .msg.hana p {
+      margin: 0;
+    }
+
+    .msg.hana p + p,
+    .msg.hana p + ul,
+    .msg.hana p + ol,
+    .msg.hana ul + p,
+    .msg.hana ol + p {
+      margin-top: 0.5rem;
+    }
+
+    .msg.hana ul,
+    .msg.hana ol {
+      margin: 0.4rem 0;
+      padding-left: 1.15rem;
+    }
+
+    .msg.hana ul:first-child,
+    .msg.hana ol:first-child {
+      margin-top: 0;
+    }
+
+    .msg.hana ul:last-child,
+    .msg.hana ol:last-child {
+      margin-bottom: 0;
+    }
+
+    .msg.hana li {
+      margin-bottom: 0.25rem;
+      line-height: 1.55;
+    }
+
+    .msg.hana li:last-child {
+      margin-bottom: 0;
+    }
+
+    .msg.hana strong {
+      font-weight: 600;
+      color: var(--ivory);
+    }
+
+    .msg.hana em {
+      font-style: italic;
+      color: var(--softer);
+    }
+
+    .msg.hana code {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+      color: var(--petal);
+    }
+
+    .msg.hana a {
+      color: var(--petal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .msg.hana a:hover {
+      color: var(--ivory);
+    }
+
     .msg.user {
       background: linear-gradient(135deg, var(--plum), var(--rose));
       color: white;
@@ -1359,30 +1414,6 @@
         font-size: 0.8rem;
       }
 
-      .stat-strip {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .stat-item {
-        max-width: none;
-        padding: 1.4rem 0.75rem;
-        border-right: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-      }
-      .stat-item:nth-child(2) {
-        border-right: none;
-      }
-      .stat-item:nth-child(3) {
-        border-bottom: none;
-      }
-      .stat-item:nth-child(4) {
-        border-right: none;
-        border-bottom: none;
-      }
-      .stat-num {
-        font-size: 2rem;
-      }
-
       .section {
         padding: 3.8rem 1.25rem;
       }
@@ -1511,7 +1542,9 @@
     }
 
     @media (hover: none) and (pointer: coarse) {
-      #cursor-glow {
+      #cursor-glow,
+      .cursor-glow-primary,
+      .cursor-glow-secondary {
         display: none !important;
       }
       .btn-primary:hover,
@@ -1525,8 +1558,10 @@
 
 <body>
 
-  <div id="tsparticles"></div>
-  <div id="cursor-glow"></div>
+  <div id="cursor-glow">
+    <div class="cursor-glow-primary"></div>
+    <div class="cursor-glow-secondary"></div>
+  </div>
   <div class="grid-bg"></div>
   <div class="petals-container" id="petals"></div>
 
@@ -1534,16 +1569,16 @@
   <nav>
     <div class="nav-logo">sharvari.</div>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#lore" onclick="closeNav()">Lore</a></li>
-      <li><a href="#experience" onclick="closeNav()">Experience</a></li>
-      <li><a href="#academy" onclick="closeNav()">Academy</a></li>
-      <li><a href="#abilities" onclick="closeNav()">Abilities</a></li>
-      <li><a href="#episodes" onclick="closeNav()">Episodes</a></li>
-      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      <li><a href="#lore" class="glow-trigger" onclick="closeNav()">Lore</a></li>
+      <li><a href="#experience" class="glow-trigger" onclick="closeNav()">Experience</a></li>
+      <li><a href="#academy" class="glow-trigger" onclick="closeNav()">Academy</a></li>
+      <li><a href="#abilities" class="glow-trigger" onclick="closeNav()">Abilities</a></li>
+      <li><a href="#episodes" class="glow-trigger" onclick="closeNav()">Episodes</a></li>
+      <li><a href="#contact" class="glow-trigger" onclick="closeNav()">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="nav-pill" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Open to opportunities</button>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" onclick="toggleNav()">
+      <button class="nav-pill glow-trigger" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Open to opportunities</button>
+      <button class="nav-toggle glow-trigger" id="nav-toggle" aria-label="Toggle navigation menu" onclick="toggleNav()">
         <span></span>
         <span></span>
         <span></span>
@@ -1563,9 +1598,9 @@
       <div class="hero-subtitle">Software & AI/ML Engineer.</div>
       <div class="hero-role">Full Stack · Machine Learning · Artificial Intelligence · LLM Engineering · Cloud — Buffalo, New York</div>
       <div class="hero-btns">
-        <button class="btn-primary"
+        <button class="btn-primary glow-trigger"
           onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">View My Arc</button>
-        <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="btn-ghost">Download Resume ↓</a>
+        <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" download="Sharvari_Mayekar_Resume.pdf" class="btn-ghost glow-trigger">Download Resume ↓</a>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1573,26 +1608,6 @@
       scroll
     </div>
   </section>
-
-  <!-- ── STATS ── -->
-  <div class="stat-strip">
-    <div class="stat-item">
-      <div class="stat-num">3+</div>
-      <div class="stat-label">Years in the field</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">Projects shipped</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">91%</div>
-      <div class="stat-label">Model accuracy</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Reps & commits</div>
-    </div>
-  </div>
 
   <!-- ── LORE ── -->
   <section class="section" id="lore" style="background:var(--deep);">
@@ -1604,10 +1619,9 @@
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a <em>Software & AI/ML Engineer</em> with an <em>MS in Computer Science</em> from the <em>University at Buffalo</em>. My work focuses on building and deploying intelligent systems — <em>LLM applications, RAG pipelines, and full-stack products</em> — backed by production-grade cloud infrastructure.</p>
-        <p>My technical background spans full-stack development (<em>Python, TypeScript, React, Django, FastAPI</em>) and applied ML/AI (<em>PyTorch, LangChain, Transformers, RAG, Claude & OpenAI APIs</em>), with cloud and infrastructure experience across <em>AWS (ECS Fargate, Lambda, Bedrock), Kafka, Docker, and Kubernetes</em>.</p>
-        <p>I've worked as a <em>Full Stack Developer at Saayam For All</em>, a <em>Software Engineer at Ipsos Market Research</em>, and a <em>Data Analytics Intern at Kiya.ai</em> — spanning cloud-native microservices, ML model deployment, and high-throughput data pipelines.</p>
-        <p>I'm currently seeking my next role in <em>Software Engineering, AI/ML Engineering, or LLM Engineering</em>, ideally on a team building intelligent systems that ship.</p>
+        <p>I'm a <em>Software & AI/ML Engineer</em> with an <em>MS in Computer Science</em> from the <em>University at Buffalo</em>, focused on building and shipping intelligent systems — <em>LLM applications, RAG pipelines, and full-stack products</em> backed by production-grade cloud infrastructure.</p>
+        <p>My stack spans full-stack development (<em>Python, TypeScript, React, Django, FastAPI</em>) and applied ML/AI (<em>PyTorch, LangChain, RAG, Claude & OpenAI APIs</em>), with cloud experience across <em>AWS, Kafka, Docker, and Kubernetes</em>. I've built cloud-native microservices, deployed ML models, and shipped high-throughput data pipelines at <em>Saayam For All</em>, <em>Ipsos Market Research</em>, and <em>Kiya.ai</em>.</p>
+        <p>I'm currently looking for my next role in <em>Software Engineering, AI/ML Engineering, or LLM Engineering</em> — ideally on a team building intelligent systems that ship.</p>
       </div>
       <div class="char-card">
         <div class="char-avatar">🌸</div>
@@ -1787,56 +1801,57 @@
       <div class="skill-col">
         <div class="skill-col-title">AI & GenAI</div>
         <div class="skill-tags">
-          <span class="stag">PyTorch</span><span class="stag">TensorFlow</span>
-          <span class="stag">Keras</span><span class="stag">Scikit-learn</span>
-          <span class="stag">LangChain</span><span class="stag">Hugging Face</span>
-          <span class="stag">CNNs</span><span class="stag">Transformers</span>
-          <span class="stag">LLMs</span><span class="stag">RAG</span>
-          <span class="stag">Pandas</span><span class="stag">NumPy</span>
-          <span class="stag">PySpark</span><span class="stag">OpenAI / Claude API</span>
+          <span class="stag glow-trigger">Pandas</span><span class="stag glow-trigger">NumPy</span>
+          <span class="stag glow-trigger">PyTorch</span><span class="stag glow-trigger">TensorFlow</span>
+          <span class="stag glow-trigger">Keras</span><span class="stag glow-trigger">Scikit-learn</span>
+          <span class="stag glow-trigger">PySpark</span><span class="stag glow-trigger">LangChain</span>
+          <span class="stag glow-trigger">Hugging Face</span><span class="stag glow-trigger">CNNs</span>
+          <span class="stag glow-trigger">Transformers</span><span class="stag glow-trigger">LLMs</span>
+          <span class="stag glow-trigger">Retrieval-Augmented Generation (RAG)</span>
+          <span class="stag glow-trigger">OpenAI API</span><span class="stag glow-trigger">Anthropic API (Claude)</span>
         </div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Cloud & Infra</div>
         <div class="skill-tags">
-          <span class="stag">AWS (ECS, Lambda, API Gateway)</span>
-          <span class="stag">Kubernetes</span><span class="stag">Docker</span>
-          <span class="stag">Kafka (MSK)</span><span class="stag">Git</span>
-          <span class="stag">CI/CD Pipelines</span>
+          <span class="stag glow-trigger">AWS</span><span class="stag glow-trigger">AWS (ECS, Lambda, API Gateway)</span>
+          <span class="stag glow-trigger">Kubernetes</span><span class="stag glow-trigger">Docker</span>
+          <span class="stag glow-trigger">Kafka (MSK)</span><span class="stag glow-trigger">Git</span>
+          <span class="stag glow-trigger">CI/CD</span><span class="stag glow-trigger">CI/CD Pipelines</span>
         </div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Data & Frameworks</div>
         <div class="skill-tags">
-          <span class="stag">Django</span><span class="stag">FastAPI</span>
-          <span class="stag">Flask</span><span class="stag">Node.js</span>
-          <span class="stag">React</span><span class="stag">PostgreSQL</span>
-          <span class="stag">MySQL</span><span class="stag">Tableau</span>
+          <span class="stag glow-trigger">Django</span><span class="stag glow-trigger">FastAPI</span>
+          <span class="stag glow-trigger">Flask</span><span class="stag glow-trigger">Node.js</span>
+          <span class="stag glow-trigger">React</span><span class="stag glow-trigger">PostgreSQL</span>
+          <span class="stag glow-trigger">MySQL</span><span class="stag glow-trigger">Tableau</span>
         </div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Languages</div>
         <div class="skill-tags">
-          <span class="stag">Python</span><span class="stag">TypeScript</span>
-          <span class="stag">JavaScript</span><span class="stag">C</span>
-          <span class="stag">C++</span><span class="stag">SQL</span>
-          <span class="stag">HTML/CSS</span>
+          <span class="stag glow-trigger">Python</span><span class="stag glow-trigger">TypeScript</span>
+          <span class="stag glow-trigger">JavaScript</span><span class="stag glow-trigger">C</span>
+          <span class="stag glow-trigger">C++</span><span class="stag glow-trigger">SQL</span>
+          <span class="stag glow-trigger">HTML/CSS</span>
         </div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Specializations</div>
         <div class="skill-tags">
-          <span class="stag">RAG Architectures</span><span class="stag">Computer Vision</span>
-          <span class="stag">Multimodal AI</span><span class="stag">Deep Learning</span>
-          <span class="stag">Distributed Queues</span><span class="stag">Grad-CAM</span>
+          <span class="stag glow-trigger">RAG Architectures</span><span class="stag glow-trigger">Computer Vision</span>
+          <span class="stag glow-trigger">Multimodal AI</span><span class="stag glow-trigger">Deep Learning</span>
+          <span class="stag glow-trigger">Distributed Queues</span><span class="stag glow-trigger">Grad-CAM</span>
         </div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Certifications</div>
         <div class="skill-tags">
-          <span class="stag">Gen AI with LLMs (DeepLearning.AI & AWS)</span>
-          <span class="stag">Claude with Amazon Bedrock (Anthropic & AWS)</span>
-          <span class="stag">Full-Stack Web Dev Bootcamp (Udemy)</span>
+          <span class="stag glow-trigger">Gen AI with LLMs (DeepLearning.AI & AWS)</span>
+          <span class="stag glow-trigger">Claude with Amazon Bedrock (Anthropic & AWS)</span>
+          <span class="stag glow-trigger">Full-Stack Web Dev Bootcamp (Udemy)</span>
         </div>
       </div>
     </div>
@@ -1852,7 +1867,7 @@
     </div>
     <div class="proj-grid">
 
-      <div class="proj-card">
+      <div class="proj-card glow-trigger">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-ep">Episode 01 · GenAI · RAG · Jul 2026</div>
@@ -1867,7 +1882,7 @@
         </div>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card glow-trigger">
         <div class="proj-top alt"></div>
         <div class="proj-body">
           <div class="proj-ep">Episode 02 · Full Stack · Multimodal AI · Apr 2026</div>
@@ -1882,7 +1897,7 @@
         </div>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card glow-trigger">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-ep">Episode 03 · Full Stack · Django · Jan 2026</div>
@@ -1897,7 +1912,7 @@
         </div>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card glow-trigger">
         <div class="proj-top alt"></div>
         <div class="proj-body">
           <div class="proj-ep">Episode 04 · Deep Learning · Computer Vision · Oct 2025</div>
@@ -1923,11 +1938,11 @@
       Actively looking for my next role in Software Engineering, AI/ML, or LLM Engineering.
     </div>
     <div class="contact-links">
-      <a href="mailto:sharvarim127@gmail.com" class="clink">✉ Email</a>
-      <a href="https://www.linkedin.com/in/sharvarimayekar/" target="_blank" rel="noopener noreferrer" class="clink">⚡
+      <a href="mailto:sharvarim127@gmail.com" class="clink glow-trigger">✉ Email</a>
+      <a href="https://www.linkedin.com/in/sharvarimayekar/" target="_blank" rel="noopener noreferrer" class="clink glow-trigger">⚡
         LinkedIn</a>
-      <a href="https://github.com/piercetheshar" target="_blank" rel="noopener noreferrer" class="clink">⌥ GitHub</a>
-      <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="clink">📜 Resume</a>
+      <a href="https://github.com/piercetheshar" target="_blank" rel="noopener noreferrer" class="clink glow-trigger">⌥ GitHub</a>
+      <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="clink glow-trigger">📜 Resume</a>
     </div>
   </section>
 
@@ -1939,7 +1954,7 @@
   </footer>
 
   <!-- ── HANA CHATBOT ── -->
-  <button id="hana-btn" onclick="toggleHana()" title="Chat with HANA">🌸</button>
+  <button id="hana-btn" class="glow-trigger" onclick="toggleHana()" title="Chat with HANA">🌸</button>
 
   <div id="hana-window">
     <div class="hana-header">
@@ -1948,154 +1963,49 @@
         <div class="hana-name">HANA</div>
         <div class="hana-status"><span class="hana-dot"></span> Holistic Assistant · Always online</div>
       </div>
-      <button class="hana-close" onclick="toggleHana()">✕</button>
+      <button class="hana-close glow-trigger" onclick="toggleHana()">✕</button>
     </div>
-    <div class="hana-messages" id="hana-messages"></div>
+          <div class="hana-messages" id="hana-messages"></div>
     <div class="hana-suggestions" id="hana-suggestions">
-      <button class="hana-suggestion" onclick="askSuggestion('Tell me about Sharvari')">Who is Sharvari?</button>
-      <button class="hana-suggestion" onclick="askSuggestion('What projects has Sharvari built?')">Projects</button>
-      <button class="hana-suggestion" onclick="askSuggestion('What is her tech stack?')">Tech stack</button>
-      <button class="hana-suggestion" onclick="askSuggestion('Where is she located and is she open to work?')">Open to
-        work?</button>
+      <button class="hana-suggestion glow-trigger" onclick="askSuggestion('Tell me about Sharvari')">Who is Sharvari?</button>
+      <button class="hana-suggestion glow-trigger" onclick="askSuggestion('What projects has Sharvari built?')">Projects</button>
+      <button class="hana-suggestion glow-trigger" onclick="askSuggestion('What is her tech stack?')">Tech stack</button>
+      <button class="hana-suggestion glow-trigger" onclick="askSuggestion('Where is she located and is she open to work?')">Open to work?</button>
     </div>
     <div class="hana-input-row">
       <input id="hana-input" type="text" placeholder="Ask me anything about Sharvari…"
         onkeydown="if(event.key==='Enter') sendHana()">
-      <button id="hana-send" onclick="sendHana()">↑</button>
+      <button id="hana-send" class="glow-trigger" onclick="sendHana()">↑</button>
     </div>
   </div>
 
-  <!-- ── TSPARTICLES CDN ── -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-
+  <!-- ── ENHANCED CURSOR GLOW & HOVER TRIGGER ── -->
   <script>
-    // ── TSPARTICLES CONSTELLATION CONFIGURATION ──
-    // Easily customize particle colors, density, speed, link distance, and mouse interactivity:
-    if (typeof tsParticles !== 'undefined') {
-      tsParticles.load('tsparticles', {
-        fpsLimit: 60,
-        detectRetina: true,
-        fullScreen: { enable: false }, // Contained within #tsparticles background
-        particles: {
-          number: {
-            value: 75,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: {
-            // Luminous theme palette: Brighter Lavender, Radiant Indigo, Soft Cashmere, Starlight White, Champagne
-            value: ['#dbe0ff', '#b3baf5', '#8fa0ff', '#ffffff', '#eef0f7', '#ffd6e0']
-          },
-          shape: {
-            type: 'circle'
-          },
-          opacity: {
-            value: 0.95,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 0.8,
-              opacity_min: 0.55,
-              sync: false
-            }
-          },
-          size: {
-            value: 3.0,
-            random: { enable: true, minimumValue: 1.8 },
-            anim: {
-              enable: true,
-              speed: 1.2,
-              size_min: 1.2,
-              sync: false
-            }
-          },
-          links: {
-            enable: true,
-            distance: 155,
-            color: '#8fa0ff',
-            opacity: 0.55,
-            width: 1.4,
-            triangles: {
-              enable: false
-            }
-          },
-          move: {
-            enable: true,
-            speed: 0.7,
-            direction: 'none',
-            random: true,
-            straight: false,
-            outModes: {
-              default: 'out'
-            }
-          }
-        },
-        interactivity: {
-          // Detect mouse events across the window seamlessly without blocking clicks/scrolling
-          detectsOn: 'window',
-          events: {
-            onHover: {
-              enable: true,
-              mode: 'grab' // Connects glowing lines to cursor
-            },
-            onClick: {
-              enable: true,
-              mode: 'push' // Adds particles on click
-            },
-            resize: true
-          },
-          modes: {
-            grab: {
-              distance: 210,
-              links: {
-                opacity: 0.9,
-                color: '#dbe0ff'
-              }
-            },
-            push: {
-              quantity: 4
-            }
-          }
-        },
-        responsive: [
-          {
-            maxWidth: 768,
-            options: {
-              particles: {
-                number: {
-                  value: 38,
-                  density: { enable: true, value_area: 500 }
-                },
-                links: {
-                  distance: 110,
-                  opacity: 0.45,
-                  color: '#8fa0ff',
-                  width: 1.2
-                },
-                move: {
-                  speed: 0.45
-                }
-              },
-              interactivity: {
-                events: {
-                  onHover: { enable: false }
-                }
-              }
-            }
-          }
-        ]
-      });
-    }
+    (function () {
+      'use strict';
 
-    // ── CURSOR GLOW ──
-    const glow = document.getElementById('cursor-glow');
+      const glowContainer = document.getElementById('cursor-glow');
+      const glowPrimary = document.querySelector('.cursor-glow-primary');
+      const glowSecondary = document.querySelector('.cursor-glow-secondary');
 
-    document.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
+      if (!glowContainer) return;
+
+      // Mouse tracking for primary & trailing secondary glow layers
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX + 'px';
+        const y = e.clientY + 'px';
+        if (glowPrimary) {
+          glowPrimary.style.left = x;
+          glowPrimary.style.top = y;
+        }
+        if (glowSecondary) {
+          glowSecondary.style.left = x;
+          glowSecondary.style.top = y;
+        }
+      }, { passive: true });
+
+
+    })();
 
     // ── FLOATING PETALS ──
     const petalContainer = document.getElementById('petals');
@@ -2224,11 +2134,91 @@ If asked something not covered above, say warmly that you don't have that detail
       }
     });
 
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderMarkdown(raw) {
+      if (!raw) return '';
+      const escaped = escapeHtml(raw);
+
+      function formatInline(str) {
+        return str
+          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/__(.+?)__/g, '<strong>$1</strong>')
+          .replace(/`([^`]+)`/g, '<code>$1</code>')
+          .replace(/(^|[^\*])\*([^\*\n]+)\*(?!\*)/g, '$1<em>$2</em>')
+          .replace(/(^|[^_])_([^_\n]+)_(?!_)/g, '$1<em>$2</em>');
+      }
+
+      const lines = escaped.split(/\r?\n/);
+      const blocks = [];
+      let currentList = null;
+      let listItems = [];
+      let paraLines = [];
+
+      function flushPara() {
+        if (paraLines.length > 0) {
+          blocks.push('<p>' + paraLines.map(formatInline).join('<br>') + '</p>');
+          paraLines = [];
+        }
+      }
+
+      function flushList() {
+        if (currentList && listItems.length > 0) {
+          blocks.push(`<${currentList}>${listItems.map(item => `<li>${formatInline(item)}</li>`).join('')}</${currentList}>`);
+          listItems = [];
+          currentList = null;
+        }
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        const ulMatch = trimmed.match(/^[\*\-•\+]\s+(.+)$/);
+        const olMatch = trimmed.match(/^\d+[\.\)]\s+(.+)$/);
+
+        if (ulMatch) {
+          flushPara();
+          if (currentList && currentList !== 'ul') flushList();
+          currentList = 'ul';
+          listItems.push(ulMatch[1]);
+        } else if (olMatch) {
+          flushPara();
+          if (currentList && currentList !== 'ol') flushList();
+          currentList = 'ol';
+          listItems.push(olMatch[1]);
+        } else if (trimmed === '') {
+          flushPara();
+          flushList();
+        } else {
+          flushList();
+          paraLines.push(trimmed);
+        }
+      }
+
+      flushPara();
+      flushList();
+
+      return blocks.join('');
+    }
+
     function addMsg(role, text) {
       const msgs = document.getElementById('hana-messages');
       const div = document.createElement('div');
       div.className = `msg ${role}`;
-      div.textContent = text;
+      if (role === 'hana') {
+        div.innerHTML = renderMarkdown(text);
+      } else {
+        div.textContent = text;
+      }
       msgs.appendChild(div);
       msgs.scrollTop = msgs.scrollHeight;
       return div;
