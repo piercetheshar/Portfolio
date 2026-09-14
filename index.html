@@ -866,13 +866,40 @@
       padding: 1.4rem 1.5rem 1.3rem;
     }
 
+    .proj-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+
     .proj-ep {
       font-family: 'Space Mono', monospace;
       font-size: 0.5rem;
       letter-spacing: 2.5px;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 0.4rem;
+    }
+
+    .proj-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: rgba(91, 110, 225, 0.12);
+      border: 1px solid rgba(91, 110, 225, 0.35);
+      color: var(--petal);
+      white-space: nowrap;
+    }
+
+    .proj-badge.alt {
+      background: rgba(154, 163, 240, 0.12);
+      border-color: rgba(154, 163, 240, 0.35);
+      color: var(--petal);
     }
 
     .proj-name {
@@ -989,6 +1016,8 @@
       border-color: var(--rose);
       background: var(--rose-dim);
     }
+
+
 
     /* ── FOOTER ── */
     footer {
@@ -1625,7 +1654,7 @@
       <div class="hero-btns">
         <button class="btn-primary glow-trigger"
           onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">View My Arc</button>
-        <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" download="Sharvari_Mayekar_Resume.pdf" class="btn-ghost glow-trigger">Download Resume ↓</a>
+        <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost glow-trigger">Download Resume ↓</a>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1895,7 +1924,10 @@
       <div class="proj-card glow-trigger">
         <div class="proj-top"></div>
         <div class="proj-body">
-          <div class="proj-ep">Episode 01 · GenAI · RAG · Jul 2026</div>
+          <div class="proj-header-row">
+            <div class="proj-ep">Episode 01 · GenAI · RAG · Jul 2026</div>
+            <span class="proj-badge">⚡ Sub-second Semantic Search</span>
+          </div>
           <div class="proj-name">HANA: RAG-Powered Portfolio Assistant</div>
           <div class="proj-desc">
             Engineered a retrieval augmented generation pipeline for a personal portfolio chatbot, chunking and embedding project and career documents into a pgvector database and retrieving relevant context at query time to ground Claude API responses, replacing a static hardcoded system prompt with dynamic, source-grounded answer generation.
@@ -1910,7 +1942,10 @@
       <div class="proj-card glow-trigger">
         <div class="proj-top alt"></div>
         <div class="proj-body">
-          <div class="proj-ep">Episode 02 · Full Stack · Multimodal AI · Apr 2026</div>
+          <div class="proj-header-row">
+            <div class="proj-ep">Episode 02 · Full Stack · Multimodal AI · Apr 2026</div>
+            <span class="proj-badge alt">✨ Multimodal AI</span>
+          </div>
           <div class="proj-name">SmartWardrobe: AI-Driven Digital Closet & Outfit Stylist</div>
           <div class="proj-desc">
             Developed a full stack digital wardrobe web application with automated image processing via Cloudinary AI to extract and categorize garments with zero hosting overhead, and integrated the Gemini API to orchestrate an intelligent styling recommendation engine that analyzes local weather data and user calendar schedules to dynamically generate personalized outfit combinations.
@@ -1925,7 +1960,10 @@
       <div class="proj-card glow-trigger">
         <div class="proj-top"></div>
         <div class="proj-body">
-          <div class="proj-ep">Episode 03 · Full Stack · Django · Jan 2026</div>
+          <div class="proj-header-row">
+            <div class="proj-ep">Episode 03 · Full Stack · Django · Jan 2026</div>
+            <span class="proj-badge">⏱ Backtracking Optimization</span>
+          </div>
           <div class="proj-name">Automated Time-Table Generator</div>
           <div class="proj-desc">
             Built a Django based automated scheduling platform with a custom backtracking optimization engine that resolves room and resource scheduling constraints. Implemented Role Based Access Control and secure RESTful APIs for multi user timetable management, reducing API response latency during concurrent CRUD operations.
@@ -1940,7 +1978,10 @@
       <div class="proj-card glow-trigger">
         <div class="proj-top alt"></div>
         <div class="proj-body">
-          <div class="proj-ep">Episode 04 · Deep Learning · Computer Vision · Oct 2025</div>
+          <div class="proj-header-row">
+            <div class="proj-ep">Episode 04 · Deep Learning · Computer Vision · Oct 2025</div>
+            <span class="proj-badge alt">🎯 91% Val Accuracy · Grad-CAM</span>
+          </div>
           <div class="proj-name">Handwriting Recognition for Accessibility</div>
           <div class="proj-desc">
             Designed and trained a multi architecture deep learning pipeline (CNN, CRNN, and Transformers) with data augmentation, label smoothing, and AdamW optimization, achieving 91% validation accuracy for handwriting to text recognition. Implemented Grad-CAM interpretability visualizations to surface model attention patterns and benchmark the three architectures across latency and generalization metrics for dyslexic and neurodiverse users.
@@ -1967,7 +2008,7 @@
       <a href="https://www.linkedin.com/in/sharvarimayekar/" target="_blank" rel="noopener noreferrer" class="clink glow-trigger">⚡
         LinkedIn</a>
       <a href="https://github.com/piercetheshar" target="_blank" rel="noopener noreferrer" class="clink glow-trigger">⌥ GitHub</a>
-      <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="clink glow-trigger">📜 Resume</a>
+      <a href="Sharvari_Mayekar_Resume.pdf" target="_blank" class="clink glow-trigger">📜 Resume ↗</a>
     </div>
   </section>
 
