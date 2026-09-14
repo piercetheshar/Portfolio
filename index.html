@@ -543,16 +543,27 @@
     }
 
     .char-avatar {
-      width: 72px;
-      height: 72px;
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--plum-dim), var(--rose-dim));
-      border: 1px solid var(--border);
+      border: 2px solid rgba(224, 92, 138, 0.4);
+      box-shadow: 0 0 18px rgba(224, 92, 138, 0.25);
       margin: 0 auto 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.9rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .char-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+      display: block;
+      border-radius: 50%;
     }
 
     .char-name {
@@ -1678,7 +1689,9 @@
         <p>I'm currently looking for my next role in <em>Software Engineering, AI/ML Engineering, or LLM Engineering</em> — ideally on a team building intelligent systems that ship.</p>
       </div>
       <div class="char-card">
-        <div class="char-avatar">🌸</div>
+        <div class="char-avatar">
+          <img src="profile.jpg" alt="Sharvari Sunil Mayekar" class="char-avatar-img">
+        </div>
         <div class="char-name">Sharvari Sunil Mayekar</div>
         <div class="char-class">AI/ML Engineer · Class S</div>
         <div class="char-divider"></div>
